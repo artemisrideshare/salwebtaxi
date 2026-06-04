@@ -1,32 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>SalWebTaxi</title>
-  <script>
-    function redirect() {
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-      // iPhone / iPad
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href = "https://apps.apple.com/ca/app/salwebtaxi/id6450707783";
-      }
+<title>SalWebTaxi - Download App</title>
 
-      // Android
-      else if (/android/i.test(userAgent)) {
-        window.location.href = "https://play.google.com/store/apps/details?id=com.taxicaller.SalWebTaxi.app";
-      }
+<style>
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+    background: linear-gradient(135deg, #0f172a, #111827);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
 
-      // fallback (desktop)
-      else {
-        document.getElementById("msg").innerHTML =
-          "Please open this link on your phone to install the app.";
+  .card {
+    width: 90%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.06);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 15px;
+    background: #22c55e;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin: 10px 0 5px;
+  }
+
+  p {
+    font-size: 14px;
+    opacity: 0.85;
+  }
+
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn {
+    padding: 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+  }
+
+  .apple {
+    background: white;
+    color: black;
+  }
+
+  .google {
+    background: #22c55e;
+    color: black;
+  }
+
+  .btn:hover {
+    transform: scale(1.03);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .footer {
+    margin-top: 15px;
+    font-size: 12px;
+    opacity: 0.6;
+  }
+</style>
+
+<script>
+function isMobile() {
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+function init() {
+  const ua = navigator.userAgent;
+
+  const isPhone = /Android|iPhone|iPad|iPod/i.test(ua);
+
+  const mobileView = document.getElementById("mobile");
+  const desktopView = document.getElementById("desktop");
+
+  if (isPhone) {
+    mobileView.classList.remove("hidden");
+
+    setTimeout(() => {
+      if (/iPhone|iPad|iPod/.test(ua)) {
+        window.location.href =
+          "https://apps.apple.com/ca/app/salwebtaxi/id6450707783";
+      } 
+      else if (/android/i.test(ua)) {
+        window.location.href =
+          "https://play.google.com/store/apps/details?id=com.taxicaller.SalWebTaxi.app";
       }
-    }
-  </script>
+    }, 1200);
+
+  } else {
+    desktopView.classList.remove("hidden");
+  }
+}
+</script>
+
 </head>
 
-<body onload="redirect()" style="font-family: Arial; text-align:center; margin-top:50px;">
-  <h2>Redirecting to SalWebTaxi App...</h2>
-  <p id="msg"></p>
+<body onload="init()">
+
+<!-- MOBILE VIEW -->
+<div id="mobile" class="card hidden">
+  <div class="logo">S</div>
+  <h1>SalWebTaxi</h1>
+  <p>Redirecting you to the best app store...</p>
+
+  <div class="footer">
+    If nothing happens, choose manually below
+  </div>
+
+  <div class="buttons">
+    <a class="btn apple"
+       href="https://apps.apple.com/ca/app/salwebtaxi/id6450707783">
+      🍎 Open App Store
+    </a>
+
+    <a class="btn google"
+       href="https://play.google.com/store/apps/details?id=com.taxicaller.SalWebTaxi.app">
+      ▶️ Open Google Play
+    </a>
+  </div>
+</div>
+
+<!-- DESKTOP VIEW -->
+<div id="desktop" class="card hidden">
+  <div class="logo">S</div>
+
+  <h1>SalWebTaxi</h1>
+  <p>Choose where to download the app</p>
+
+  <div class="buttons">
+    <a class="btn apple"
+       href="https://apps.apple.com/ca/app/salwebtaxi/id6450707783">
+      🍎 Download on App Store
+    </a>
+
+    <a class="btn google"
+       href="https://play.google.com/store/apps/details?id=com.taxicaller.SalWebTaxi.app">
+      ▶️ Get it on Google Play
+    </a>
+  </div>
+
+  <div class="footer">
+    Scan this QR code on your phone for faster install
+  </div>
+</div>
+
 </body>
 </html>
