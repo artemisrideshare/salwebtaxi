@@ -522,7 +522,24 @@
         document.querySelector('.pulse-dot').style.background = '#64748b';
       }
 
-      // Auto-redirect on mobile — only once per session
+      const overlay = document.getElementById('redirect-overlay');
+
+      // When the user returns to this tab from the store (iOS bfcache restore,
+      // or Android switching back), immediately hide the overlay so the
+      // landing page is visible — no refresh needed.
+      function hideOverlay() {
+        overlay.classList.remove('visible');
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) hideOverlay();
+      });
+
+      window.addEventListener('pageshow', function () {
+        hideOverlay();
+      });
+
+      // Auto-redirect on mobile — only once per session.
       // When the user returns from the store the flag is already set,
       // so the landing page is shown instead of redirecting again.
       const alreadyRedirected = sessionStorage.getItem('swt_redirected');
@@ -530,13 +547,17 @@
       if (isMobile && !alreadyRedirected) {
         sessionStorage.setItem('swt_redirected', '1');
 
-        const overlay = document.getElementById('redirect-overlay');
         const msg = document.getElementById('redirect-msg');
         msg.textContent = isIOS ? 'Opening the App Store…' : 'Opening Google Play…';
         overlay.classList.add('visible');
 
         setTimeout(function () {
           window.location.href = isIOS ? iosUrl : androidUrl;
+
+          // Fallback: hide overlay 2 s after the redirect fires.
+          // Covers the case where the page stays alive in memory (iOS)
+          // and visibilitychange hasn't fired yet.
+          setTimeout(hideOverlay, 2000);
         }, 1600);
       }
     })();
