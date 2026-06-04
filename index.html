@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SalWebTaxi</title>
+  <script>
+    function redirect() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // iPhone / iPad
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = "https://apps.apple.com/ca/app/salwebtaxi/id6450707783";
+      }
+
+      // Android
+      else if (/android/i.test(userAgent)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.taxicaller.SalWebTaxi.app";
+      }
+
+      // fallback (desktop)
+      else {
+        document.getElementById("msg").innerHTML =
+          "Please open this link on your phone to install the app.";
+      }
+    }
+  </script>
+</head>
+
+<body onload="redirect()" style="font-family: Arial; text-align:center; margin-top:50px;">
+  <h2>Redirecting to SalWebTaxi App...</h2>
+  <p id="msg"></p>
+</body>
+</html>
