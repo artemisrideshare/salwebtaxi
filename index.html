@@ -7,130 +7,176 @@
 <title>SalWebTaxi - Download App</title>
 
 <style>
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
-    background: linear-gradient(135deg, #0f172a, #111827);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-  }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+  background: linear-gradient(135deg, #0f172a, #111827);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
 
-  .card {
-    width: 90%;
-    max-width: 420px;
-    background: rgba(255,255,255,0.06);
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(14px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    animation: fadeIn 0.5s ease-in-out;
-  }
+/* CARD */
+.card {
+  width: 92%;
+  max-width: 450px;
+  background: rgba(255,255,255,0.06);
+  padding: 25px;
+  border-radius: 22px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: fadeIn 0.6s ease;
+}
 
-  .logo {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 15px;
-    background: #22c55e;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: bold;
-  }
+/* APP ICON */
+.icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  margin: 0 auto 10px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
 
-  h1 {
-    font-size: 24px;
-    margin: 10px 0 5px;
-  }
+/* PHONE MOCKUP */
+.phone {
+  width: 160px;
+  height: 320px;
+  margin: 15px auto;
+  border: 10px solid #1f2937;
+  border-radius: 30px;
+  position: relative;
+  background: #0b1220;
+  animation: float 3s ease-in-out infinite;
+}
 
-  p {
-    font-size: 14px;
-    opacity: 0.85;
-  }
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+}
 
-  .buttons {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+/* BUTTONS */
+.buttons {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-  .btn {
-    padding: 14px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    transition: 0.2s;
-  }
+.btn {
+  padding: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 
-  .apple {
-    background: white;
-    color: black;
-  }
+.apple { background: white; color: black; }
+.google { background: #22c55e; color: black; }
 
-  .google {
-    background: #22c55e;
-    color: black;
-  }
+.btn:hover { transform: scale(1.04); }
 
-  .btn:hover {
-    transform: scale(1.03);
-  }
+/* BADGES */
+.badges {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
 
-  .hidden {
-    display: none;
-  }
+.badge {
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.1);
+}
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* REVIEWS */
+.review {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 10px;
+  line-height: 1.4;
+}
 
-  .footer {
-    margin-top: 15px;
-    font-size: 12px;
-    opacity: 0.6;
-  }
+/* QR GLOW */
+.glow {
+  animation: glow 2s infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px #22c55e; }
+  50% { box-shadow: 0 0 25px #22c55e; }
+  100% { box-shadow: 0 0 5px #22c55e; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* LANGUAGE */
+.small {
+  font-size: 12px;
+  opacity: 0.7;
+}
 </style>
 
 <script>
-function isMobile() {
-  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+function trackScan() {
+  let scans = localStorage.getItem("scans") || 0;
+  scans++;
+  localStorage.setItem("scans", scans);
+}
+
+function detectLang() {
+  const lang = navigator.language || navigator.userLanguage;
+  if (lang.includes("fr")) {
+    document.getElementById("title").innerText = "Télécharger SalWebTaxi";
+    document.getElementById("desc").innerText = "Votre service de taxi rapide et fiable";
+  }
 }
 
 function init() {
+  trackScan();
+  detectLang();
+
   const ua = navigator.userAgent;
 
-  const isPhone = /Android|iPhone|iPad|iPod/i.test(ua);
+  const mobile = /Android|iPhone|iPad|iPod/i.test(ua);
 
-  const mobileView = document.getElementById("mobile");
-  const desktopView = document.getElementById("desktop");
-
-  if (isPhone) {
-    mobileView.classList.remove("hidden");
-
+  if (mobile) {
     setTimeout(() => {
       if (/iPhone|iPad|iPod/.test(ua)) {
-        window.location.href =
-          "https://apps.apple.com/ca/app/salwebtaxi/id6450707783";
-      } 
-      else if (/android/i.test(ua)) {
-        window.location.href =
-          "https://play.google.com/store/apps/details?id=com.taxicaller.SalWebTaxi.app";
+        window.location.href = "https://apps.apple.com/ca/app/salwebtaxi/id6450707783";
+      } else {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.taxicaller.SalWebTaxi.app";
       }
-    }, 1200);
-
-  } else {
-    desktopView.classList.remove("hidden");
+    }, 1500);
   }
 }
 </script>
@@ -139,51 +185,51 @@ function init() {
 
 <body onload="init()">
 
-<!-- MOBILE VIEW -->
-<div id="mobile" class="card hidden">
-  <div class="logo">S</div>
-  <h1>SalWebTaxi</h1>
-  <p>Redirecting you to the best app store...</p>
+<div class="card glow">
 
-  <div class="footer">
-    If nothing happens, choose manually below
+  <!-- APP ICON -->
+  <img class="icon" src="YOUR_APP_ICON_URL" />
+
+  <h1 id="title">Download SalWebTaxi</h1>
+  <p id="desc">Fast & reliable rides at your fingertips</p>
+
+  <!-- BADGES -->
+  <div class="badges">
+    <div class="badge">⭐ Trusted App</div>
+    <div class="badge">🔒 Secure</div>
+    <div class="badge">⚡ Fast Booking</div>
   </div>
 
+  <!-- PHONE MOCKUP -->
+  <div class="phone">
+    <div class="screen">🚖</div>
+  </div>
+
+  <div class="small">Automatically detecting your device...</div>
+
+  <!-- BUTTONS -->
   <div class="buttons">
     <a class="btn apple"
        href="https://apps.apple.com/ca/app/salwebtaxi/id6450707783">
-      🍎 Open App Store
+      🍎 App Store
     </a>
 
     <a class="btn google"
        href="https://play.google.com/store/apps/details?id=com.taxicaller.SalWebTaxi.app">
-      ▶️ Open Google Play
-    </a>
-  </div>
-</div>
-
-<!-- DESKTOP VIEW -->
-<div id="desktop" class="card hidden">
-  <div class="logo">S</div>
-
-  <h1>SalWebTaxi</h1>
-  <p>Choose where to download the app</p>
-
-  <div class="buttons">
-    <a class="btn apple"
-       href="https://apps.apple.com/ca/app/salwebtaxi/id6450707783">
-      🍎 Download on App Store
-    </a>
-
-    <a class="btn google"
-       href="https://play.google.com/store/apps/details?id=com.taxicaller.SalWebTaxi.app">
-      ▶️ Get it on Google Play
+      ▶️ Google Play
     </a>
   </div>
 
-  <div class="footer">
-    Scan this QR code on your phone for faster install
+  <!-- REVIEWS -->
+  <div class="review">
+    ⭐⭐⭐⭐⭐ “Very smooth booking experience”<br>
+    ⭐⭐⭐⭐⭐ “Fast taxis and clean UI”
   </div>
+
+  <div class="small" style="margin-top:10px;">
+    Scan QR → Install in seconds
+  </div>
+
 </div>
 
 </body>
